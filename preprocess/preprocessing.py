@@ -13,10 +13,11 @@ class Normalizer:
                      L2 / Euclidean
                      Lp norm
                      Uniform / Supremum (Sup) / Chebyshev / Infinity / Maximum norm
-                     Quantile https://en.wikipedia.org/wiki/Quantile_normalization
-                     # TODO - Zero norm
                      Frobenius / Hilbert–Schmidt norm
-                     # TODO - Lpq norm https://en.wikipedia.org/wiki/Matrix_norm#L2,1_and_Lp,q_norms
+                     # TODO
+                     Quantile https://en.wikipedia.org/wiki/Quantile_normalization
+                     Zero norm
+                     Lpq norm https://en.wikipedia.org/wiki/Matrix_norm#L2,1_and_Lp,q_norms
         limits:list(len=2) - if method is 'MinMax' Maximum and minimum value
         lamda:numeric - when method is Box-Cox, lamda is the term used in its formula
         delta:[numeric, None] - when method is Box-Cox, delta is the term to be added to make the data positive as is required by BoxCox
