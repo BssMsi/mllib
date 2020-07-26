@@ -4,36 +4,30 @@
 
 ## Implemented algorithms
 ### Regression
-<ol>
-	<li>Linear Regression (Using Closed form, Gradient Descent)</li>
-	<li>Lasso Regression (Using Coordinate Descent)</li>
-	<li>Ridge Regression (Using Closed form, Gradient Descent)</li>
-	#### TODO
-	<li>Elastic Net Regression</li>
-</ol>
+1. Linear Regression (Using Closed form, Gradient Descent)
+2. Lasso Regression (Using Coordinate Descent)
+3. Ridge Regression (Using Closed form, Gradient Descent)
+#### TODO
+1. Elastic Net Regression
 ### Classification
-<ol>
-	#### TODO
-	<li>Logistic Regression ()</li>
-	<li>Naive Bayes Classifier ()</li>
-	<li></li>
-	<li></li>
-</ol>
+1. Naive Bayes Classifier (Gaussian, Bernoulli, Multinomial, Complement)
+#### TODO
+2. Logistic Regression ()
+
 ### Normalization
 If axis=0, Feature wise norm is computed
 Else if axis=None, whole X is considered
-<ol>
-	<li>Standard Scaler ()</li>
-	<li>MinMax / Linear Scaler ()</li>
-	<li>Box Cox transformation ()</li>
-	<li>Log Scaler ()</li>
-	<li>L1 / Manhattan / Taxicab normalization ()</li>
-	<li>L2 / Euclidean / 2-norm()</li>
-	<li>Lp norm</li>
-	<li>Uniform / Supremum (Sup) / Chebyshev / Infinity / Maximum norm</li>
-	<li>Frobenius / Hilbert–Schmidt norm</li>
-	#### TODO
-	<li>Quantile</li>
-	<li>Zero norm</li>
-	<li>Lpq norm</li>
-</ol>
+
+1. Standard Scaler
+2. MinMax / Linear Scaler
+3. Box Cox transformation
+4. Log Scaler
+5. L1 / Manhattan / Taxicab normalization
+6. L2 / Euclidean / 2-norm
+7. Lp norm
+8. Uniform / Supremum (Sup) / Chebyshev / Infinity / Maximum norm
+9. Frobenius / Hilbert–Schmidt norm
+#### TODO
+1. Quantile
+2. Zero norm
+3. Lpq norm
