@@ -7,26 +7,28 @@ class LinearRegression:
         method:[None or 'closed', 'cd', 'gd'] - 'cd': Coordinate Descent method, None or 'closed': , gd': Gradient Descent method
         alpha:float - if method is 'gd': Learning rate in case of Gradient descent
                       if method is 'cd' and regularization is 'elastic-net': Elastic-net alpha parameter
+        fit_intercept:bool - To use the intercept term, if False, X is assumed to be centered
         # TODO - LAR Method (Pg 94, Elements of Statistical Leanring)
         regularization:[None, 'l1' | 'lasso', 'l2' | 'ridge'] - None: Ordinary Least Squares method,
                                                                 'l1' or 'lasso': Lasso Regression which is Least Squares with L1 regularization / penalty
                                                                 'l2' or 'ridge': Ridge Regression which is Least Squares with L2 regularization / penalty
         # TODO - Elastic-Net regularization (Pg 93, Elements of Statistical Leanring)
-        fit_intercept:bool - To use the intercept term, if False, X is assumed to be centered
+        reg_intercept:bool - If fit_intercept is True and regularization is not None, whether to regularize the intercept or not
         penalty:float - a.k.a lambda, multiplier that controls 
         n_iters:int - number of iterations in case of Gradient Descent Method
         '''
+        if regularization is None:
+            self.reg = None
+        else:
+            regularization = regularization.lower()
+            if regularization == 'l1' or regularization == 'lasso':
+                self.reg = 'l1'
+            elif regularization == 'l2' or regularization == 'ridge':
+                self.reg = 'l2'
         method = method.lower()
         if method == 'gd':
-            assert regularization is None, "Gradient descent cannot be used with regularization, use Coordinate Descent"
+            assert self.reg == 'l2' or self.reg is None, "Gradient descent method can only be used with L2 regularization or None"
         self.method = method
-        regularization = regularization.lower()
-        if regularization == 'l1' or regularization == 'lasso':
-            self.reg = 'l1'
-        elif regularization == 'l2' or regularization == 'ridge':
-            self.reg = 'l2'
-        else:
-            self.reg = None
         self.penalty = penalty
         self.reg_intercept = reg_intercept
         self.fit_intercept = fit_intercept
@@ -73,14 +75,15 @@ class LinearRegression:
                     print("Gradient Descent not implemented for Lasso")
                     raise NotImplementedError
                 elif self.reg == 'l2':
-                    if self.reg_intercept and self.fit_intercept:
+                    if self.fit_intercept and not(self.reg_intercept):
                         for i in range(self.n_iters):
                             W[0] -= self.alpha / n_datapoints * (X[:, 0] @ (X[:, 0]*W[0] - y))
                             W[1:] = W[1:]*(1-self.alpha * self.penalty / n_datapoints) - \
                                             self.alpha / n_datapoints * (X[:, 1:].T @ (np.dot(X[:, 1:], W[1:]).ravel() - y))
                     else:
                         for i in range(self.n_iters):
-                            W -= self.alpha / n_datapoints * (X.T @ (np.dot(X, W).ravel() - y))
+                            W = W*(1-self.alpha * self.penalty / n_datapoints) - \
+                                            self.alpha / n_datapoints * (X.T @ (np.dot(X, W).ravel() - y))
             # Using Coordinate Descent
             elif self.method == 'cd':
                 i = 0
