@@ -9,15 +9,18 @@
 3. Ridge Regression (Using Closed form, Gradient Descent)
 #### TODO
 1. Elastic Net Regression
+
 ### Classification
 1. Naive Bayes Classifier (Gaussian, Bernoulli, Multinomial, Complement)
+2. Logistic Regression
+3. K Nearest Neighbours
 #### TODO
-2. Logistic Regression ()
+4. Support Vector Machines
+5. Decision Trees
 
 ### Normalization
 If axis=0, Feature wise norm is computed
 Else if axis=None, whole X is considered
-
 1. Standard Scaler
 2. MinMax / Linear Scaler
 3. Box Cox transformation
